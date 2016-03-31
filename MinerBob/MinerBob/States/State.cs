@@ -9,10 +9,7 @@ namespace MinerBob.States
 {
     abstract class State
     {
-        public State()
-        {
-
-        }
+        public State(){ }
 
         abstract public void Enter(Hunter hunter);
         abstract public void Execute(Hunter hunter);

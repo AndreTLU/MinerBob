@@ -11,7 +11,8 @@ namespace MinerBob.Locations
         public enum location_type
         {
             FOREST,
-            HOME
+            HOME,
+            WAREHOUSE
         }
     }
 }

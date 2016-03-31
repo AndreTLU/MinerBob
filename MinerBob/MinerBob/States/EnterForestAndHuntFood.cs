@@ -10,28 +10,40 @@ namespace MinerBob.States
 {
     class EnterForestAndHuntFood : State
     {
-        public EnterForestAndHuntFood()
+        private static EnterForestAndHuntFood instance;
+        private EnterForestAndHuntFood(){}
+
+        public static EnterForestAndHuntFood Instance
         {
-
+            get
+            {
+                if (instance == null) instance = new EnterForestAndHuntFood();
+                return instance;
+            }
         }
-
         public override void Enter(Hunter hunter)
         {
             if(hunter.Location != Location.location_type.FOREST)
             {
                 hunter.Location = Location.location_type.FOREST;
+                Console.WriteLine("Entering Forest ");
             }
+            
         }
 
         public override void Execute(Hunter hunter)
         {
+            Console.WriteLine("[" + hunter.Location.ToString() + "] Gathering some food... ");
+   
+            hunter.IncreaseFatigue(1);
             hunter.addFood(1);
-            if (hunter.PocketsFull()) hunter.changeState(EnterHomeAndRest);
+            if (hunter.NeedRest()) hunter.changeState(EnterHomeAndRest.Instance);
+            if (hunter.PocketsFull()) hunter.changeState(StoreTheFood.Instance);
         }
 
         public override void Exit(Hunter hunter)
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Leaving Forest ");
         }
     }
 }

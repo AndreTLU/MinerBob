@@ -51,6 +51,7 @@
     <Compile Include="States\EnterForestAndHuntFood.cs" />
     <Compile Include="States\EnterHomeAndRest.cs" />
     <Compile Include="States\State.cs" />
+    <Compile Include="States\StoreTheFood.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
