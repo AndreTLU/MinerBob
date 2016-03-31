@@ -28,7 +28,7 @@ namespace MinerBob.States
             if (hunter.Location != Location.location_type.HOME)
             {
                 hunter.Location = Location.location_type.HOME;
-                Console.WriteLine("Going home ");
+                Console.WriteLine(hunter.Name + " - Going home ");
             }
             
         }
@@ -39,7 +39,7 @@ namespace MinerBob.States
             hunter.rest();
             for (int i = 0; i < 3; i++)
             {
-                Console.WriteLine("[" + hunter.Location.ToString() + "] Resting for a bit .... ");
+                Console.WriteLine(hunter.Name + " - [" + hunter.Location.ToString() + "] Resting for a bit .... ");
                 Thread.Sleep(1000);
             }
             hunter.changeState(EnterForestAndHuntFood.Instance);
@@ -47,7 +47,7 @@ namespace MinerBob.States
 
         public override void Exit(Hunter hunter)
         {
-            Console.WriteLine("Leaving home ");
+            Console.WriteLine(hunter.Name + " - Leaving home ");
         }
     }
 }

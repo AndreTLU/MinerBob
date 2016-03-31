@@ -26,14 +26,14 @@ namespace MinerBob.States
             if(hunter.Location != Location.location_type.FOREST)
             {
                 hunter.Location = Location.location_type.FOREST;
-                Console.WriteLine("Entering Forest ");
+                Console.WriteLine(hunter.Name + " - Entering Forest ");
             }
             
         }
 
         public override void Execute(Hunter hunter)
         {
-            Console.WriteLine("[" + hunter.Location.ToString() + "] Gathering some food... ");
+            Console.WriteLine(hunter.Name + " - [" + hunter.Location.ToString() + "] Gathering some food... ");
    
             hunter.IncreaseFatigue(1);
             hunter.addFood(1);
@@ -43,7 +43,7 @@ namespace MinerBob.States
 
         public override void Exit(Hunter hunter)
         {
-            Console.WriteLine("Leaving Forest ");
+            Console.WriteLine(hunter.Name + " - Leaving Forest ");
         }
     }
 }

@@ -18,6 +18,13 @@ namespace MinerBob.Entities
         int _foodWarehouse;
         int _thirst;
         int _fatigue;
+        string _name;
+
+        public string Name
+        {
+            get { return _name; }
+            set { _name = value; }
+        }
 
         Location.location_type _location;
 
@@ -34,13 +41,14 @@ namespace MinerBob.Entities
 
         bool _enoughFoodForDay = false;
 
-        public Hunter()
+        public Hunter(string _text)
         {
             _foodCarried = 0;
             _foodCounter = 0;
             _foodWarehouse = 0;
             _thirst = 0;
             _fatigue = 0;
+            Name = _text;
             _currentState = EnterHomeAndRest.Instance;
             _location = Locations.Location.location_type.HOME;
 
