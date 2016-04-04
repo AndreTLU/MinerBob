@@ -9,12 +9,12 @@ namespace MinerBob.Entities
     class Entity
     {
         int _id;
-        static int _netxtValidID;
+        static int _nextValidID;
         
 
         void setID()
         {
-            _id = _netxtValidID;
+            _id = _nextValidID;
         }
 
         public Entity()

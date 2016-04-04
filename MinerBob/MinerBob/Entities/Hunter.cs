@@ -126,14 +126,6 @@ namespace MinerBob.Entities
             _currentState.Enter(this);
         }
 
-        //public void changeToPreviousState()
-        //{
-        //    State _nextState = _previousState;
-        //    _currentState.Exit(this);
-        //    _nextState.Enter(this);
-        //    _currentState = _nextState;
-        //}
-
         public void changeToPreviousState()
         {
             changeState(_previousState);
