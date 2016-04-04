@@ -12,7 +12,8 @@ namespace MinerBob.Locations
         {
             FOREST,
             HOME,
-            WAREHOUSE
+            WAREHOUSE,
+            RIVER
         }
     }
 }

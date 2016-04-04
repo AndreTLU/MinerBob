@@ -35,14 +35,22 @@ namespace MinerBob.States
 
         public override void Execute(Hunter hunter)
         {
-
-            hunter.rest();
-            for (int i = 0; i < 3; i++)
+            if(hunter.Fatigue > 0)
             {
-                Console.WriteLine(hunter.Name + " - [" + hunter.Location.ToString() + "] Resting for a bit .... ");
-                Thread.Sleep(1000);
+                hunter.rest();
+                for (int i = hunter.Fatigue; i > 0; i--)
+                {
+                    Console.WriteLine(hunter.Name + " - Resting for a bit .... ");
+                    Thread.Sleep(1000);
+                }
             }
-            hunter.changeState(EnterForestAndHuntFood.Instance);
+            else
+            {
+                Console.WriteLine(hunter.Name + " - Grabbing a snack");
+                Console.WriteLine(hunter.Name + " - Going back to my work");
+                hunter.changeState(EnterForestAndHuntFood.Instance);
+            }
+            
         }
 
         public override void Exit(Hunter hunter)

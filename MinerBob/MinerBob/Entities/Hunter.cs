@@ -20,13 +20,29 @@ namespace MinerBob.Entities
         int _fatigue;
         string _name;
 
+        Location.location_type _location;
+
+        public State PreviousState
+        {
+            get { return _previousState; }
+        }
+
+        public int Thirst
+        {
+            get { return _thirst; }
+            set { _thirst = value; }
+        }
+
         public string Name
         {
             get { return _name; }
             set { _name = value; }
         }
 
-        Location.location_type _location;
+        public int Fatigue
+        {
+            get { return _fatigue; }
+        }
 
         public Location.location_type Location
         {
@@ -44,7 +60,6 @@ namespace MinerBob.Entities
         public Hunter(string _text)
         {
             _foodCarried = 0;
-            _foodCounter = 0;
             _foodWarehouse = 0;
             _thirst = 0;
             _fatigue = 0;
@@ -64,15 +79,14 @@ namespace MinerBob.Entities
         {
             _fatigue += _amount;
         }
-        public bool NeedRest()
-        {
-            if (_fatigue >= 7) return true;
-            else return false;
-        }
+        //public bool NeedRest()
+        //{
+        //    if (_fatigue >= 7) return true;
+        //    else return false;
+        //}
 
         public void addFood(int amount)
         {
-            _foodCounter += amount;
             _foodCarried += amount;
         }
         public bool PocketsFull()
@@ -83,18 +97,18 @@ namespace MinerBob.Entities
         public void storeFood()
         {
             _foodWarehouse += _foodCarried;
+            _foodCounter += _foodCarried;
             _foodCarried = 0;
         }
         public void rest()
         {
-            _thirst =0;
-            _fatigue =0;
             _foodCounter = 0;
+            _fatigue = 0;
         }
 
         public bool enoughFood()
         {
-            if (_foodCounter == 8)
+            if (_foodCounter >= 8)
             {
                 return true;
             }
@@ -112,19 +126,19 @@ namespace MinerBob.Entities
             _currentState.Enter(this);
         }
 
+        //public void changeToPreviousState()
+        //{
+        //    State _nextState = _previousState;
+        //    _currentState.Exit(this);
+        //    _nextState.Enter(this);
+        //    _currentState = _nextState;
+        //}
+
         public void changeToPreviousState()
         {
-            State _nextState = _previousState;
-            _currentState.Exit(this);
-            _nextState.Enter(this);
-            _currentState = _nextState;
+            changeState(_previousState);
         }
 
-        public string Stats()
-        {
-            return "Fat: " + _fatigue + " FoodH: " + _foodCarried + " Count" + _foodCounter;
-        }
 
-        
     }
 }

@@ -50,6 +50,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="States\EnterForestAndHuntFood.cs" />
     <Compile Include="States\EnterHomeAndRest.cs" />
+    <Compile Include="States\QuenchThirst.cs" />
     <Compile Include="States\State.cs" />
     <Compile Include="States\StoreTheFood.cs" />
   </ItemGroup>

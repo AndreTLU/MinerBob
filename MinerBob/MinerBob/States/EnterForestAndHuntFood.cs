@@ -33,11 +33,12 @@ namespace MinerBob.States
 
         public override void Execute(Hunter hunter)
         {
-            Console.WriteLine(hunter.Name + " - [" + hunter.Location.ToString() + "] Gathering some food... ");
+            Console.WriteLine(hunter.Name + " - Gathering some food... ");
    
             hunter.IncreaseFatigue(1);
             hunter.addFood(1);
-            if (hunter.NeedRest()) hunter.changeState(EnterHomeAndRest.Instance);
+            //if (hunter.NeedRest()) hunter.changeState(EnterHomeAndRest.Instance);
+            if (hunter.Thirst > 8) hunter.changeState(QuenchThirst.Instance);
             if (hunter.PocketsFull()) hunter.changeState(StoreTheFood.Instance);
         }
 
