@@ -9,7 +9,7 @@ using System.Threading;
 
 namespace MinerBob.States
 {
-    class EnterHomeAndRest : State
+    class EnterHomeAndRest : State<Hunter>
     {
         private static EnterHomeAndRest instance;
         private EnterHomeAndRest() { }
@@ -48,7 +48,7 @@ namespace MinerBob.States
             {
                 Console.WriteLine(hunter.Name + " - Grabbing a snack");
                 Console.WriteLine(hunter.Name + " - Going back to my work");
-                hunter.changeState(EnterForestAndHuntFood.Instance);
+                hunter.GetSM().changeState(EnterForestAndHuntFood.Instance);
             }
             
         }

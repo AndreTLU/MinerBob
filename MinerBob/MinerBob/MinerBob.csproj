@@ -43,8 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Consumable.cs" />
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="Entities\Hunter.cs" />
+    <Compile Include="Entities\BaseItem.cs" />
     <Compile Include="Locations\Location.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -52,6 +54,7 @@
     <Compile Include="States\EnterHomeAndRest.cs" />
     <Compile Include="States\QuenchThirst.cs" />
     <Compile Include="States\State.cs" />
+    <Compile Include="States\StateMachine.cs" />
     <Compile Include="States\StoreTheFood.cs" />
   </ItemGroup>
   <ItemGroup>

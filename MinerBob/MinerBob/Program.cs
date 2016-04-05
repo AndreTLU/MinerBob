@@ -14,14 +14,16 @@ namespace MinerBob
         static void Main(string[] args)
         {
             Hunter hunter = new Hunter("John");
+            Consumable bottle = new Consumable("Water bottle", "Bottle fileld with water", 5, 3, 1);
+            hunter.AddItem(bottle);
+            hunter.GetSM().SetCurrentState(EnterHomeAndRest.Instance);
 
-
-            for (int i =0; i<25; ++i)
+            for (int i =0; i<45; ++i)
             {
 
                 hunter.Update();
 
-                Thread.Sleep(1000);
+                Thread.Sleep(100);
             }
         }
     }

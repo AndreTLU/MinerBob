@@ -8,7 +8,7 @@ using MinerBob.Locations;
 
 namespace MinerBob.States
 {
-    class EnterForestAndHuntFood : State
+    class EnterForestAndHuntFood : State<Hunter>
     {
         private static EnterForestAndHuntFood instance;
         private EnterForestAndHuntFood(){}
@@ -38,8 +38,8 @@ namespace MinerBob.States
             hunter.IncreaseFatigue(1);
             hunter.addFood(1);
             //if (hunter.NeedRest()) hunter.changeState(EnterHomeAndRest.Instance);
-            if (hunter.Thirst > 8) hunter.changeState(QuenchThirst.Instance);
-            if (hunter.PocketsFull()) hunter.changeState(StoreTheFood.Instance);
+            if (hunter.Thirst > 8) hunter.GetSM().changeState(QuenchThirst.Instance);
+            if (hunter.PocketsFull()) hunter.GetSM().changeState(StoreTheFood.Instance);
         }
 
         public override void Exit(Hunter hunter)

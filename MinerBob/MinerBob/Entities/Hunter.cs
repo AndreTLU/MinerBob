@@ -10,9 +10,6 @@ namespace MinerBob.Entities
 {
     class Hunter: Entity
     {
-        State _currentState;
-        State _previousState;
-
         int _foodCarried;
         int _foodCounter;
         int _foodWarehouse;
@@ -20,12 +17,11 @@ namespace MinerBob.Entities
         int _fatigue;
         string _name;
 
-        Location.location_type _location;
+        StateMachine<Hunter> _StateMachine;
 
-        public State PreviousState
-        {
-            get { return _previousState; }
-        }
+        List<BaseItem> inventory = new List<BaseItem>();
+
+        Location.location_type _location;
 
         public int Thirst
         {
@@ -55,8 +51,6 @@ namespace MinerBob.Entities
             get { return _foodWarehouse; }
         }
 
-        bool _enoughFoodForDay = false;
-
         public Hunter(string _text)
         {
             _foodCarried = 0;
@@ -64,7 +58,7 @@ namespace MinerBob.Entities
             _thirst = 0;
             _fatigue = 0;
             Name = _text;
-            _currentState = EnterHomeAndRest.Instance;
+            _StateMachine = new StateMachine<Hunter>(this);
             _location = Locations.Location.location_type.HOME;
 
         }
@@ -72,18 +66,13 @@ namespace MinerBob.Entities
         public override void Update()
         {
             _thirst += 1;
-            _currentState.Execute(this);
+            _StateMachine.Update();
         }
 
         public void IncreaseFatigue(int _amount)
         {
             _fatigue += _amount;
         }
-        //public bool NeedRest()
-        //{
-        //    if (_fatigue >= 7) return true;
-        //    else return false;
-        //}
 
         public void addFood(int amount)
         {
@@ -118,19 +107,26 @@ namespace MinerBob.Entities
             }
         }
 
-        public void changeState(State _newState)
+        public List<BaseItem> Inventory
         {
-            _previousState = _currentState;
-            _currentState.Exit(this);
-            _currentState = _newState;
-            _currentState.Enter(this);
+            get { return inventory; }
         }
 
-        public void changeToPreviousState()
+        public void AddItem(BaseItem item)
         {
-            changeState(_previousState);
+            inventory.Add(item);
         }
 
+        public void UseItem(BaseItem item)
+        {
+            Consumable itemUsed = (Consumable)item;
+            itemUsed.Charges--;
+            Thirst -= itemUsed.Restore;
+        }
 
+        public StateMachine<Hunter> GetSM()
+        {
+            return _StateMachine;
+        }
     }
 }

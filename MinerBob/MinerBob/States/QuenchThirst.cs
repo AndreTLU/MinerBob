@@ -7,7 +7,7 @@ using MinerBob.Entities;
 
 namespace MinerBob.States
 {
-    class QuenchThirst : State
+    class QuenchThirst : State<Hunter>
     {
         private static QuenchThirst instance;
         private QuenchThirst() { }
@@ -33,9 +33,12 @@ namespace MinerBob.States
 
         public override void Execute(Hunter hunter)
         {
-            Console.WriteLine(hunter.Name + " - Drinking some of this fine river water");
-            hunter.Thirst = 0;
-            hunter.changeToPreviousState();
+            for(int i=hunter.Thirst; i > 0; i--)
+            {
+                hunter.UseItem(hunter.Inventory[0]);
+                Console.WriteLine(hunter.Name + " - Drinking some water from river");
+            }
+            hunter.GetSM().changeToPreviousState();
         }
 
         public override void Exit(Hunter hunter)

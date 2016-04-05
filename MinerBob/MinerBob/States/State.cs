@@ -7,13 +7,13 @@ using MinerBob.Entities;
 
 namespace MinerBob.States
 {
-    abstract class State
+    abstract class State<T>
     {
         public State(){ }
 
-        abstract public void Enter(Hunter hunter);
-        abstract public void Execute(Hunter hunter);
-        abstract public void Exit(Hunter hunter);
+        abstract public void Enter(T entity);
+        abstract public void Execute(T entity);
+        abstract public void Exit(T entity);
 
     }
 }
