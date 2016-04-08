@@ -22,6 +22,7 @@ namespace MinerBob.States
                 return instance;
             }
         }
+        public event EventHandler HunterHomeHandle;
 
         public override void Enter(Hunter hunter)
         {
@@ -29,12 +30,14 @@ namespace MinerBob.States
             {
                 hunter.Location = Location.location_type.HOME;
                 Console.WriteLine(hunter.Name + " - Going home ");
+                
             }
             
         }
 
         public override void Execute(Hunter hunter)
         {
+            
             if(hunter.Fatigue > 0)
             {
                 hunter.rest();
@@ -46,6 +49,8 @@ namespace MinerBob.States
             }
             else
             {
+                if (HunterHomeHandle != null)
+                    HunterHomeHandle(this, EventArgs.Empty);
                 Console.WriteLine(hunter.Name + " - Grabbing a snack");
                 Console.WriteLine(hunter.Name + " - Going back to my work");
                 hunter.GetSM().changeState(EnterForestAndHuntFood.Instance);

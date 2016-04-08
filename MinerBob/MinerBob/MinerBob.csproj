@@ -45,8 +45,10 @@
   <ItemGroup>
     <Compile Include="Entities\Consumable.cs" />
     <Compile Include="Entities\Entity.cs" />
+    <Compile Include="Entities\EntityManager.cs" />
     <Compile Include="Entities\Hunter.cs" />
     <Compile Include="Entities\BaseItem.cs" />
+    <Compile Include="Entities\HunterWife.cs" />
     <Compile Include="Locations\Location.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -56,6 +58,7 @@
     <Compile Include="States\State.cs" />
     <Compile Include="States\StateMachine.cs" />
     <Compile Include="States\StoreTheFood.cs" />
+    <Compile Include="States\WifeGlobalState.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
